@@ -8,7 +8,9 @@ class DataClass:
     def initiate(self):
     # making sure the argument passed is a list
         if not isinstance(self.results, list):
-            return "result data must be a list type"
+            return {
+                "Error":"result data must be a list type"
+                }
             
         # check if the results is an empty list
         if not self.results or self.results==[]:
@@ -24,6 +26,7 @@ class DataClass:
 
         people = {}
         people_scores = {}
+        
         # iterate over the lists of the dictionary list so we can have access
         #  to individual list in the results list
         for result in self.results:
@@ -31,12 +34,11 @@ class DataClass:
             site = f"site_{self.results.index(result)}"
             for person in result: 
                 name = person.get('name', '')
-                email = person.get('email', '')
                 age = person.get('age', '')
-                gender = person.get('age', '')
-                occupation = person.get('age', '')
+                gender = person.get('gender', '')
+                occupation = person.get('occupation', '')
                 # create a person ID for each dictionary in the iterated list
-                person_id = f"{name}_{email}_{age}_{gender}_{occupation}"
+                person_id = f"{name}_{age}_{gender}_{occupation}"
                 # add the person ID as a key to the people dictionary
                 people.setdefault(person_id, {})
                 people[person_id][site] = person
